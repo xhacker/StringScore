@@ -72,7 +72,7 @@
 
         NSRange r  =NSMakeRange(index, 1);
 
-        NSString *chr = [otherString substringWithRange:r];
+        unichar chr = [otherString characterAtIndex:index];
 
         NSString *upperChr = [otherUpper substringWithRange:r];
         NSString *lowerChr = [otherLower substringWithRange:r];
@@ -102,7 +102,7 @@
         // Set base score for matching chr
         
         // Same case bonus.
-        if(indexInString != NSNotFound && [[string substringWithRange:NSMakeRange(indexInString, 1)] isEqualToString:chr]){
+        if(indexInString != NSNotFound && [string characterAtIndex:indexInString] == chr){
             characterScore += 0.1;
         }
         
