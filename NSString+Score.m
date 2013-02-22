@@ -55,24 +55,33 @@
     CGFloat otherStringScore;
     CGFloat fuzzies = 1;
     CGFloat finalScore;
+
+    NSString *otherUpper = [otherString uppercaseString];
+    NSString *otherLower = [otherString lowercaseString];
+
+    CGFloat fuzzinessFloat = fuzziness.floatValue;
         
     // Walk through abbreviation and add up scores.
     for(uint index = 0; index < otherStringLength; index++){
         CGFloat characterScore = 0.1;
         NSInteger indexInString = NSNotFound;
-        NSString *chr;
         NSRange rangeChrLowercase;
         NSRange rangeChrUppercase;
 
-        chr = [otherString substringWithRange:NSMakeRange(index, 1)];
-        
+        NSRange r  =NSMakeRange(index, 1);
+
+        NSString *chr = [otherString substringWithRange:r];
+
+        NSString *upperChr = [otherUpper substringWithRange:r];
+        NSString *lowerChr = [otherLower substringWithRange:r];
+
         //make these next few lines leverage NSNotfound, methinks.
-        rangeChrLowercase = [string rangeOfString:[chr lowercaseString]];
-        rangeChrUppercase = [string rangeOfString:[chr uppercaseString]];
+        rangeChrLowercase = [string rangeOfString:lowerChr];
+        rangeChrUppercase = [string rangeOfString:upperChr];
         
         if(rangeChrLowercase.location == NSNotFound && rangeChrUppercase.location == NSNotFound){
             if(fuzziness){
-                fuzzies += 1 - [fuzziness floatValue];
+                fuzzies += 1 - fuzzinessFloat;
             } else {
                 return 0; // this is an error!
             }
