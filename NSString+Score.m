@@ -19,13 +19,27 @@
     return [self scoreAgainst:otherString fuzziness:fuzziness options:NSStringScoreOptionNone];
 }
 
-- (CGFloat) scoreAgainst:(NSString *)anotherString fuzziness:(NSNumber *)fuzziness options:(NSStringScoreOption)options{
+- (CGFloat) scoreAgainst:(NSString *)anotherString fuzziness:(NSNumber *)fuzziness options:(NSStringScoreOption)options {
+    NSCharacterSet *invalidCharacterSet = [self invalidCharacterSet];
+    NSString *string = [self decomposedStringWithInvalidCharacterSet:invalidCharacterSet];
+    return [self scoreAgainst:anotherString fuzziness:fuzziness options:options invalidCharacterSet:invalidCharacterSet decomposedString:string];
+}
+
+- (NSCharacterSet *)invalidCharacterSet {
     NSMutableCharacterSet *workingInvalidCharacterSet = [NSCharacterSet lowercaseLetterCharacterSet];
     [workingInvalidCharacterSet formUnionWithCharacterSet:[NSCharacterSet uppercaseLetterCharacterSet]];
     [workingInvalidCharacterSet addCharactersInString:@" "];
     NSCharacterSet *invalidCharacterSet = [workingInvalidCharacterSet invertedSet];
-    
+    return invalidCharacterSet;
+}
+
+- (NSString *)decomposedStringWithInvalidCharacterSet:(NSCharacterSet *)invalidCharacterSet {
     NSString *string = [[[self decomposedStringWithCanonicalMapping] componentsSeparatedByCharactersInSet:invalidCharacterSet] componentsJoinedByString:@""];
+    return string;
+}
+
+- (CGFloat) scoreAgainst:(NSString *)anotherString fuzziness:(NSNumber *)fuzziness options:(NSStringScoreOption)options
+     invalidCharacterSet:(NSCharacterSet *)invalidCharacterSet decomposedString:(NSString *)string {
     NSString *otherString = [[[anotherString decomposedStringWithCanonicalMapping] componentsSeparatedByCharactersInSet:invalidCharacterSet] componentsJoinedByString:@""];
     
     // If the string is equal to the abbreviation, perfect match.
