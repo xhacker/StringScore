@@ -60,7 +60,9 @@
     NSString *otherLower = [otherString lowercaseString];
 
     CGFloat fuzzinessFloat = fuzziness.floatValue;
-        
+
+    unichar space = [@" " characterAtIndex:0];
+
     // Walk through abbreviation and add up scores.
     for(uint index = 0; index < otherStringLength; index++){
         CGFloat characterScore = 0.1;
@@ -118,7 +120,8 @@
             // Acronym Bonus
             // Weighing Logic: Typing the first character of an acronym is as if you
             // preceded it with two perfect character matches.
-            if( [[string substringWithRange:NSMakeRange(indexInString - 1, 1)] isEqualToString:@" "] ){
+
+            if([string characterAtIndex:indexInString - 1] == space) {
                 characterScore += 0.8;
             }
         }
