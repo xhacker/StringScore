@@ -1,6 +1,6 @@
 # StringScore
 
-This fork was created to prove that StringCore provides reasonable performance. The question about it was raised on the Stackoverflow question [Objective-c: Fast Fuzzy Search Match](http://stackoverflow.com/questions/15012673/objective-c-fast-fuzzy-search-match/15014414#15014414).
+This fork was created to prove that StringScore provides reasonable performance. The question about it was raised on the Stackoverflow question [Objective-c: Fast Fuzzy Search Match](http://stackoverflow.com/questions/15012673/objective-c-fast-fuzzy-search-match/15014414#15014414).
 
 ## Setup code extracted
 
@@ -19,7 +19,7 @@ The first two can be used to generate the data that is needed for the scoring al
 
 ## Additional changes
 
-The other changes focus on speeding up the algorithm itself by generating less NSString objects.
+The other changes focus on speeding up the algorithm itself by generating fewer NSString objects.
 
 
 ## Credits
