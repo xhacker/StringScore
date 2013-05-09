@@ -1,6 +1,6 @@
 # StringScore
 
-This fork was created to prove that StringScore provides reasonable performance. The question about it was raised on the Stackoverflow question [Objective-c: Fast Fuzzy Search Match](http://stackoverflow.com/questions/15012673/objective-c-fast-fuzzy-search-match/15014414#15014414).
+This fork was created to support Unicode characters, based on the fork which was created to prove that StringScore provides reasonable performance. The question about it was raised on the Stackoverflow question [Objective-c: Fast Fuzzy Search Match](http://stackoverflow.com/questions/15012673/objective-c-fast-fuzzy-search-match/15014414#15014414).
 
 ## Setup code extracted
 
